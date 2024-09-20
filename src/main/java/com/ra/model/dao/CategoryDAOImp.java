@@ -34,4 +34,12 @@ public class CategoryDAOImp implements CategoryDAO{
         }
         return categories;
     }
+
+    @Override
+    public Boolean create(Category category) {
+        // ghi de [huong thuc them moi va lam them moi giong Javacore
+        return null;
+    }
+
+
 }

@@ -13,6 +13,7 @@
 </head>
 <body>
     <h1>Danh sachs danh muc </h1>
+    <a href="/category?action=add">Them moi</a>
     <table width="500px" border="1px">
         <tr>
             <td>ID</td>

@@ -17,10 +17,35 @@ public class CategoryController extends HttpServlet {
     private static CategoryDAO categoryDAO = new CategoryDAOImp();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //lay action tren url
+        String acction = req.getParameter("action");
+        if(acction != null){
+            switch (acction){
+                case "add":
+                    req.getRequestDispatcher("/views/add.jsp").forward(req,resp);
+                    break;
+                case "edit":
+                    resp.sendRedirect("edit.jsp");
+                    break;
+                case "delete":
+                    break;
+            }
+        }
         // goij den DAO de lay du lieu
         List<Category> categories = categoryDAO.getAllCategory();
         // mang du lieu sang view de hien thi
         req.setAttribute("categories",categories);
         req.getRequestDispatcher("/views/category.jsp").forward(req,resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // nhan du lieu tu form
+        String name = req.getParameter("name");
+        Category category = new Category();
+        category.setCategoryName(name);
+        category.setCategoryStatus(true);
+        // goi den DAO de them moi
+        categoryDAO.create(category);
     }
 }
